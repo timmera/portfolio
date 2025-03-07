@@ -1,6 +1,15 @@
 import { createClient } from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
 
+if (
+  !process.env.SANITY_STUDIO_DATASET ||
+  !process.env.SANITY_STUDIO_PROJECT_ID
+) {
+  throw new Error(
+    'Missing SANITY_STUDIO_DATASET or SANITY_STUDIO_PROJECT_ID environment variables'
+  );
+}
+
 export const config = {
   dataset: process.env.SANITY_STUDIO_DATASET,
   projectId: process.env.SANITY_STUDIO_PROJECT_ID,
