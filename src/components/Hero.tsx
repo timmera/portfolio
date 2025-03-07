@@ -64,7 +64,7 @@ function Hero({}: Props) {
               Skills
             </motion.button>
           </Link>
-          <Link href="#projects">
+          <Link href="projects">
             <motion.button
               whileHover={{ scale: 1.2, transition: { duration: 0.1 } }}
               whileTap={{ scale: 0.9 }}
