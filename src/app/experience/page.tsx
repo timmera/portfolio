@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import { Experience } from '@/../../typings';
+
 import { getExperience } from '@/sanity/lib/getExperience';
-import { urlFor } from '@/sanity/lib/image';
 
 export default async function Page() {
   const experiences: Experience[] = (await getExperience()) || [];
@@ -15,12 +15,7 @@ export default async function Page() {
           {experiences?.map((experience) => (
             <div key={experience._id}>
               <h2>{experience?.company}</h2>
-              {experience.companyImage && (
-                <img
-                  src={urlFor(experience.companyImage).width(80).url()}
-                  alt={experience.company}
-                />
-              )}
+
               <p className="text-sm/6">{experience?.dateStarted}</p>
               <p className="text-sm/6">{experience?.dateEnded}</p>
               <p className="text-sm/6">{experience?.jobTitle}</p>

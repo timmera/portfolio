@@ -4,7 +4,7 @@ import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { motion } from 'framer-motion';
 
-type Props = {};
+type Props = object;
 
 function Header({}: Props) {
   return (

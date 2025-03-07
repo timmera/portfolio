@@ -3,13 +3,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Cursor, useTypewriter } from 'react-simple-typewriter';
-import BackGroundCircles from './BackgroundCircles';
 
-type Props = {};
+type Props = object;
 
 function Hero({}: Props) {
-  const [text, count] = useTypewriter({
+  const [text] = useTypewriter({
     words: [
       'Hi,',
       "I'm a Frontend Developer",
@@ -21,11 +21,12 @@ function Hero({}: Props) {
   });
   return (
     <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
-      <BackGroundCircles />
-      <img
+      <Image
         src="https://media.licdn.com/dms/image/v2/C5603AQGMyfEgrNRjdg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1617777157650?e=1744848000&v=beta&t=Aa-emmZV0R2MTMl3d0fO361GfuhFW9CQMt6jrkxo3wI"
         alt="hero"
-        className="relative rounded-full h-32 w-32 mx-auto object-cover"
+        width={128}
+        height={128}
+        className="relative rounded-full mx-auto object-cover"
       />
       <div className="z-20">
         <h2 className="text-sm uppercase text-gray-300 pb-2 tracking-[10px]">
