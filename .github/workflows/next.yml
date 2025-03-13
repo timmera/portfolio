@@ -29,6 +29,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID }}
+      SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -70,6 +74,11 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Run my script
+        env:
+          SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID }}
+          SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
+        run: echo "Project ID is $SANITY_STUDIO_PROJECT_ID and Dataset is $SANITY_STUDIO_DATASET"
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} npm run build
       - name: Upload artifact
