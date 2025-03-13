@@ -18,7 +18,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  basePath: '/portfolio',
   trailingSlash: true, // This ensures the URLs are properly handled on GitHub Pages
   distDir: 'out',
 };
