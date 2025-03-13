@@ -15,7 +15,6 @@ export const config = {
   projectId: process.env.SANITY_STUDIO_PROJECT_ID,
   apiVersion: '2021-03-25',
   useCdn: process.env.NODE_ENV === 'production',
-  reactComponentAnnotation: process.env.NODE_ENV === 'development',
 };
 
 export const sanityClient = createClient(config);
