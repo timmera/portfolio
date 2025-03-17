@@ -1,6 +1,7 @@
 import { groq } from 'next-sanity';
 import { sanityClient } from '@/../sanity';
 import { Project } from '@/../typings';
+import type { GetStaticProps } from 'next';
 
 export const getProjects = async () => {
   try {
@@ -13,4 +14,14 @@ export const getProjects = async () => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const projects = await getProjects();
+  return {
+    props: {
+      projects,
+    },
+    revalidate: 20,
+  };
 };
