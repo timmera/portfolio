@@ -21,7 +21,7 @@ export default async function handler(
     }
 
     try {
-      const { _id, _type, action } = req.body;
+      const { _type, action } = req.body;
 
       if (
         (_type === 'experience' || _type === 'project') &&
