@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const receivedSecret = req.headers['x-sanity-secret'];
+    const receivedSecret = req.headers['X-Sanity-Secret'];
 
     if (receivedSecret !== SECRET) {
       return res.status(403).json({ error: 'Forbidden: Invalid secret' });
