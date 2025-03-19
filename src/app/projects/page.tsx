@@ -3,7 +3,6 @@ import { Project } from '@/../../typings';
 import { getProjects } from '@/sanity/lib/getProjects';
 import { urlFor } from '../../sanity/lib/image';
 import Image from 'next/image';
-import type { GetStaticProps } from 'next';
 
 export default async function Page() {
   const projects: Project[] = (await getProjects()) || [];
@@ -43,13 +42,3 @@ export default async function Page() {
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const projects = await getProjects();
-  return {
-    props: {
-      projects,
-    },
-    revalidate: 20,
-  };
-};
