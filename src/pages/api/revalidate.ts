@@ -16,9 +16,6 @@ export default async function handler(
       return res.status(400).json({ error: 'Missing secret header' });
     }
 
-    // Log the received secret for debugging (DO NOT LOG in production)
-    console.log('Received secret:', receivedSecret);
-
     if (receivedSecret !== SECRET) {
       return res.status(403).json({ error: 'Forbidden: Invalid secret' });
     }
