@@ -7,7 +7,17 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const receivedSecret = req.headers['X-Sanity-Secret'];
+    // Retrieve the X-Sanity-Secret header (case insensitive)
+    const receivedSecret =
+      req.headers['x-sanity-secret'] || req.headers['X-Sanity-Secret'];
+
+    // Check if the secret header is missing
+    if (!receivedSecret) {
+      return res.status(400).json({ error: 'Missing secret header' });
+    }
+
+    // Log the received secret for debugging (DO NOT LOG in production)
+    console.log('Received secret:', receivedSecret);
 
     if (receivedSecret !== SECRET) {
       return res.status(403).json({ error: 'Forbidden: Invalid secret' });
