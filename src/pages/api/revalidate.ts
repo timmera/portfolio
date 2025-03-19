@@ -21,11 +21,18 @@ export default async function handler(
     }
 
     try {
-      // Trigger revalidation for specific pages
-      await res.revalidate('/'); // Revalidate homepage
-      await res.revalidate('/projects'); // Or another dynamic path
-      await res.revalidate('/experience'); // Or another dynamic
-      return res.json({ revalidated: true });
+      const { _id, _type, action } = req.body;
+
+      if (
+        (_type === 'experience' || _type === 'project') &&
+        (action === 'create' || action === 'update')
+      ) {
+        // Trigger revalidation for specific pages
+        await res.revalidate('/'); // Revalidate homepage
+        await res.revalidate('/projects'); // Or another dynamic path
+        await res.revalidate('/experience'); // Or another dynamic
+        return res.json({ revalidated: true });
+      }
     } catch (error) {
       console.error('Error during revalidation:', error);
       return res.status(500).json({ error: 'Failed to revalidate' });
