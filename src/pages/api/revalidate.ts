@@ -24,6 +24,7 @@ export default async function handler(
       // Trigger revalidation for specific pages
       await res.revalidate('/'); // Revalidate homepage
       await res.revalidate('/projects'); // Or another dynamic path
+      await res.revalidate('/experience'); // Or another dynamic
       return res.json({ revalidated: true });
     } catch (error) {
       console.error('Error during revalidation:', error);
