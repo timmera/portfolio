@@ -1,10 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+const SECRET = process.env.SANITY_WEBHOOK_SECRET; // Get the secret from environment variables
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
+    const receivedSecret = req.headers['x-sanity-secret'];
+
+    if (receivedSecret !== SECRET) {
+      return res.status(403).json({ error: 'Forbidden: Invalid secret' });
+    }
+
     try {
       // Trigger revalidation for specific pages
       await res.revalidate('/'); // Revalidate homepage
