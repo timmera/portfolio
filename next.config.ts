@@ -22,8 +22,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  trailingSlash: true, // This ensures the URLs are properly handled on GitHub Pages
-  distDir: 'out',
 };
 
 export default nextConfig;
